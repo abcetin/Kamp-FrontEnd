@@ -2,10 +2,25 @@
   <span class="visually-hidden">Loading...</span>
 </div>
 
-<ul *ngIf = "dataLoaded==true" class="list-group">
-  <li class="list-group-item active" aria-current="true">Kategoriler</li>
-    <li (click)="setCurrentCategory(category)" *ngFor ="let category of categories" 
-      [class]="getCurrentCategoryClass(category)">{{category.categoryName}}</li>
-  </ul>
+<ul *ngIf="dataLoaded == true" class="list-group">
+  <li
+    (click)="setCurrentAllCategory()"
+    routerLink="/products"
+    [class]="getAllCategoryClass()"
+    routerLink="/products"
+    aria-current="true"
+  >
+    Kategoriler
+  </li>
 
-  <h5 *ngIf="currentCategory">{{currentCategory.categoryName}} seçtiniz</h5>
+  <li
+    (click)="setCurrentCategory(category)"
+    routerLink="/products/category/{{ category.categoryId }}"
+    *ngFor="let category of categories"
+    [class]="getCurrentCategoryClass(category)"
+  >
+    {{ category.categoryName }}
+  </li>
+</ul>
+
+<h5 *ngIf="currentCategory">{{ currentCategory.categoryName }} seçtiniz</h5>
